@@ -7,3 +7,4 @@ Languages I wanna check out for the advent of code:
 - c#
 - java
 - rust
+- python
