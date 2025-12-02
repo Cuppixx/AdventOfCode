@@ -4,4 +4,5 @@
 
 [node name="Main" type="Node" unique_id=1104601112]
 script = ExtResource("1_ig7tw")
-code = "uid://d4dmowcytye53"
+code = "uid://2knyx1iixui3"
+flush_delay = 0.2

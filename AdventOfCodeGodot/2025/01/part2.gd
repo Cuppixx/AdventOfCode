@@ -13,7 +13,7 @@ var step: int
 
 
 func start() -> void:
-    var lines: Array[String] = Helpers.text_file_to_array("res://2025/01/input.txt")
+    var lines: PackedStringArray = Helpers.text_file_to_array("res://2025/01/input.txt")
 
     #print("The dial starts by pointing at %d" % pointer)
 
