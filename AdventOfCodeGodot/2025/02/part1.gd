@@ -39,22 +39,28 @@ func _sequence_number(num: int) -> int:
     if num_str.begins_with("0"):
         return 0
 
-    # Try all possible pattern lengths from 1 to length/2
     for pattern_len in range(1, int(length / 2) + 1):
-        # Check if the total length is divisible by pattern length
-        if length % pattern_len == 0:
-            pattern = num_str.substr(0, pattern_len)
-            repetitions = length / pattern_len
+        if length % pattern_len != 0:
+            continue
 
-            if repetitions >= 2 and repetitions % 2 == 0: # part 1
-            #if repetitions >= 2: # part2
-                reconstructed = ""
-                for i in range(repetitions):
-                    reconstructed += pattern
+        pattern = num_str.substr(0, pattern_len)
+        repetitions = length / pattern_len
 
-                if reconstructed == num_str:
-                    #print("Found sequence number: ", num_str)
-                    return int(num_str)
+        if repetitions < 2 or repetitions % 2 != 0: # part 1 rule
+        # if repetitions < 2: # part 2 rule
+            continue
+
+        var is_valid := true
+
+        # Check each segment against the base pattern
+        for i in range(pattern_len, length, pattern_len):
+            if num_str.substr(i, pattern_len) != pattern:
+                is_valid = false
+                break # bail out early
+
+        if is_valid:
+            return num
 
     return 0
 @warning_ignore_restore("integer_division")
+
