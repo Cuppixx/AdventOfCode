@@ -4,7 +4,6 @@ var num_str: String
 var length: int
 var pattern: String
 var repetitions: int
-var reconstructed: String
 
 func start() -> void:
     var ranges: PackedStringArray = Helpers.text_file_to_array("res://2025/02/input.txt", ",")
@@ -30,6 +29,8 @@ func start() -> void:
 
     self.done.emit()
 
+# INFO: For further optimization, consider working with integers directly
+# instead of using expensive string operations.
 
 @warning_ignore_start("integer_division")
 func _sequence_number(num: int) -> int:
@@ -46,21 +47,12 @@ func _sequence_number(num: int) -> int:
         pattern = num_str.substr(0, pattern_len)
         repetitions = length / pattern_len
 
-        if repetitions < 2 or repetitions % 2 != 0: # part 1 rule
-        # if repetitions < 2: # part 2 rule
+        if repetitions < 2 or repetitions % 2 != 0: # part 1
+        #if repetitions < 2: # part 2
             continue
 
-        var is_valid := true
-
-        # Check each segment against the base pattern
-        for i in range(pattern_len, length, pattern_len):
-            if num_str.substr(i, pattern_len) != pattern:
-                is_valid = false
-                break # bail out early
-
-        if is_valid:
+        if num_str == pattern.repeat(repetitions):
             return num
 
     return 0
 @warning_ignore_restore("integer_division")
-
