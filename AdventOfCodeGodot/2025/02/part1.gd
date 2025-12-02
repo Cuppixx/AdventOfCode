@@ -5,6 +5,7 @@ var length: int
 var pattern: String
 var repetitions: int
 
+
 func start() -> void:
     var ranges: PackedStringArray = Helpers.text_file_to_array("res://2025/02/input.txt", ",")
 
@@ -28,6 +29,7 @@ func start() -> void:
     print("Invalid IDs sum: ", sum)
 
     self.done.emit()
+
 
 # INFO: For further optimization, consider working with integers directly
 # instead of using expensive string operations.
